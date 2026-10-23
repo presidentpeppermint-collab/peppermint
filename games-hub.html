@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rishaan's Library</title>
+<style>
+:root{--red:#d6203a;--deep:#7d0b1f;--mint:#3ecf9a;--cream:#fff7f5;--ink:#3a0b14;--mute:#8a4a55;--line:#f1c9cf}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+background:repeating-linear-gradient(45deg,#8f1027 0 22px,#7d0b1f 22px 44px);min-height:100vh}
+.banner{background:repeating-linear-gradient(45deg,#d6203a 0 16px,#fff 16px 32px);color:#fff;text-align:center;padding:0}
+.banner div{background:rgba(125,11,31,.92);padding:14px 12px;display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap}
+.banner span{border:1px solid #fff;border-radius:6px;padding:5px 20px}
+.top{display:flex;align-items:center;gap:12px;padding:12px 24px;font-size:20px;color:#fff;font-weight:600}
+.top svg{width:38px;height:38px;animation:spin 14s linear infinite}
+.panel{max-width:1155px;margin:8px auto 40px;background:var(--cream);border-radius:18px;border:4px solid transparent;
+background:linear-gradient(var(--cream),var(--cream)) padding-box,repeating-linear-gradient(45deg,#d6203a 0 12px,#fff 12px 24px) border-box;
+box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.wrap{padding:34px 56px 52px}
+@media(max-width:700px){.wrap{padding:22px 14px}}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em;color:var(--red)}
+.sub{color:var(--mute);margin:0 0 18px}
+.bar{position:sticky;top:0;background:var(--cream);padding:10px 0;z-index:2}
+input{width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:inherit}
+input:focus{outline:3px solid var(--mint);outline-offset:1px;border-color:var(--red)}
+.tabs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tabs button{border:2px solid var(--line);background:#fff;color:var(--ink);padding:7px 16px;border-radius:999px;font:inherit;cursor:pointer;transition:transform .15s}
+.tabs button:hover{transform:translateY(-1px)}
+.tabs button[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+h2{font-size:17px;margin:28px 0 10px;color:var(--deep);display:flex;align-items:center;gap:8px}
+h2:before{content:"";width:14px;height:14px;border-radius:50%;background:repeating-conic-gradient(var(--red) 0 30deg,#fff 30deg 60deg);border:1px solid var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+a.c{display:block;background:#fff;border:2px solid var(--line);border-left:6px solid var(--red);border-radius:12px;padding:11px 14px;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+a.c:nth-child(even){border-left-color:var(--mint)}
+a.c:hover,a.c:focus-visible{transform:translateY(-2px);box-shadow:0 6px 16px rgba(214,32,58,.18);outline:none;border-color:var(--red)}
+a.c b{display:block;font-weight:600}
+a.c span{color:var(--mute);font-size:13px}
+.none{color:var(--mute);display:none;margin-top:24px}
+/* loader */
+#load{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+background:radial-gradient(circle at 50% 40%,#b3162f,#5a0716 70%);transition:opacity .6s,visibility .6s}
+#load.done{opacity:0;visibility:hidden}
+#load .mint{width:170px;height:170px;animation:roll 2.2s cubic-bezier(.6,0,.3,1) infinite,pulse 1.1s ease-in-out infinite alternate;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5))}
+#load .shadow{width:120px;height:14px;border-radius:50%;background:rgba(0,0,0,.35);margin-top:-14px;animation:sh 1.1s ease-in-out infinite alternate}
+#load p{color:#fff;font-size:18px;letter-spacing:.04em;margin:0}
+#load .meter{width:220px;height:12px;border-radius:99px;border:2px solid #fff;overflow:hidden}
+#load .meter i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,#d6203a 0 8px,#fff 8px 16px);background-size:22px 22px;animation:fill 2.2s ease-out forwards,slide .6s linear infinite}
+.spark{position:absolute;width:10px;height:10px;background:#fff;border-radius:50%;opacity:0;animation:tw 2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes roll{0%{transform:rotate(0)}100%{transform:rotate(720deg)}}
+@keyframes pulse{to{scale:1.08}}
+@keyframes sh{to{transform:scaleX(.8);opacity:.6}}
+@keyframes fill{to{width:100%}}
+@keyframes slide{to{background-position:22px 0}}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:.9;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#load .mint,.top svg,.spark{animation:none}}
+</style></head><body>
+<div id="load" aria-label="Loading">
+<div class="mint" id="bigmint"></div><div class="shadow"></div>
+<p>Unwrapping your games...</p><div class="meter"><i></i></div>
+</div>
+<!-- REMOVE the banner and top blocks if embedding in Google Sites -->
+<div class="banner"><div>This website is for educational use only! We do not endorse any unauthorized use.<span>Warning</span></div></div>
+<div class="top"><span id="smallmint" style="display:flex"></span>Rishaan's Library</div>
+<div class="panel"><div class="wrap">
+<h1>Game Hub</h1>
+<p class="sub">50 game sites in one place. Search or filter by type.</p>
+<div class="bar">
+<input id="q" type="search" placeholder="Search by name or game (e.g. slope, chess, typing)" aria-label="Search">
+<div class="tabs" id="tabs"></div></div>
+<div id="out"></div>
+<p class="none" id="none">No matches. Try another word.</p>
+</div></div>
+<script>
+function mint(){const N=12,st=2*Math.PI/N,r=48,tw=.55;let d="";
+for(let i=0;i<N;i++){const a=i*st,b=a+st/2,c=(x,y)=>(x.toFixed(2)+","+y.toFixed(2));
+const P=(k,t)=>[k*Math.cos(t),k*Math.sin(t)];
+const p1=P(r,a),p2=P(r,b),q1=P(r*.55,a+tw),q2=P(r*.55,b+tw);
+d+=`<path fill="${i%2?'#fff':'#d6203a'}" d="M0,0 Q${c(...q1)} ${c(...p1)} A${r},${r} 0 0 1 ${c(...p2)} Q${c(...q2)} 0,0Z"/>`}
+return `<svg viewBox="-54 -54 108 108"><circle r="53" fill="#fff"/><circle r="50" fill="#fff" stroke="#d6203a" stroke-width="1.5"/><g>${d}</g><circle r="49" fill="none" stroke="#fff" stroke-width="2"/><ellipse cx="-18" cy="-24" rx="14" ry="6" fill="#fff" opacity=".35" transform="rotate(-35 -18 -24)"/></svg>`}
+document.getElementById("bigmint").innerHTML=mint();
+document.getElementById("smallmint").innerHTML=mint();
+const ld=document.getElementById("load");
+for(let i=0;i<10;i++){const e=document.createElement("b");e.className="spark";e.style.cssText=`left:${10+Math.random()*80}%;top:${10+Math.random()*80}%;animation-delay:${Math.random()*2}s`;ld.appendChild(e)}
+const t0=Date.now();
+function hide(){setTimeout(()=>ld.classList.add("done"),Math.max(0,2300-(Date.now()-t0)))}
+if(document.readyState==="complete")hide();else addEventListener("load",hide);
+const G="Google Sites hubs",D="GitHub / GitLab libraries",E="Whitelisted classics";
+const S="https://sites.google.com/";
+const L=[
+[G,"Classroom 6x",S+"view/classroom6x/","Huge HTML5 portal: 1v1.lol, Run 3, Retro Bowl"],
+[G,"Unblocked Games World",S+"view/unblockedgamesworld/","General repository; sports and driving"],
+[G,"Unblocked Games 66 EZ",S+"site/unblockedgames66ez/","Flash emulation and light arcade ports"],
+[G,"Unblocked Games 76",S+"site/unblockedgames76/","Multiplayer .io games and physics puzzles"],
+[G,"Unblocked Games 77",S+"view/unblocked-games-76-77","3D car sims and survival mini-games"],
+[G,"Tyrone's Unblocked Games",S+"site/tyronesunblockedgames/","Classics: Happy Wheels, Slope"],
+[G,"HTML5 Games Unblocked",S+"view/html5gamesunblocked/","Low-spec Chromebook titles: Crossy Road, FNF"],
+[G,"The Game Compilation",S+"site/thegamecompilation/","Driving and platforming: Drift Hunters"],
+[G,"Unblocked Games 911",S+"site/unblockedgames911/","Strategy and puzzle ports: BitLife, Tunnel Rush"],
+[G,"Unblocked Games 67",S+"site/unblockedgames67/","Single-player action and defense"],
+[G,"Classroom Center Games",S+"classroom.center/view-1/","2D stunt driving, motorcycle, parking"],
+[G,"Snake Hub",S+"view/snake-unblocked/","Custom Google Snake mods"],
+[G,"2048 Hub",S+"view/2048-unblocked/","Variations of the 2048 grid puzzle"],
+[G,"Slope Unblocked",S+"view/slope-unblocked-game/","Standalone WebGL Slope"],
+[G,"Retro Bowl Hub",S+"view/retro-bowl-unblocked/","HTML5 Retro Bowl"],
+[G,"Unblocked Games 24h",S+"site/unblockedgames24h/","Puzzles, Fireboy & Watergirl"],
+[G,"Unblocked Games 88",S+"site/unblockedgames88/","Legacy browser arcade"],
+[G,"Unblocked Games 99",S+"site/unblockedgames99/","Defense, tower, strategy"],
+[G,"Unblocked Games Pod",S+"site/unblockedgamespod/","Broad multi-genre catalog"],
+[G,"Classroom G+ Hub",S+"view/classroom-g-plus/","Chromebook-friendly clones"],
+[G,"Paper Minecraft Portal",S+"view/paperminecraftunblocked/","Scratch-based 2D Minecraft"],
+[G,"Moto X3M Hub",S+"view/motox3munblockedgame/","Full Moto X3M series"],
+[G,"Basketball Stars Hub",S+"view/basketballstarsunblocked/","Fast 2-player sports"],
+[G,"Cookie Clicker",S+"view/cookieclickerunblocked/","Idle game repository"],
+[G,"Vex Series",S+"view/vex-unblocked/","Stickman parkour, Vex 3 to 7"],
+[D,"Classroom 6x (GitLab)","https://class6x.gitlab.io","Mirror of Classroom 6x"],
+[D,"TBG95","https://tbg95.github.io","Open-source, fast loading"],
+[D,"ubg98","https://ubg98.github.io","Static HTML5 library for Chromebooks"],
+[D,"ubg100","https://ubg100.github.io","Expanded mirror of ubg98"],
+[D,"ubg365","https://ubg365.github.io","Light sports and physics games"],
+[D,"3kh0 (Echo)","https://3kh0.github.io","Clean open-source library many others fork"],
+[D,"Selenite","https://selenite.github.io","High-performance HTML5 game player"],
+[D,"Skins ubg","https://skinsubg.github.io","Ported mobile casual games"],
+[D,"Gimme Cookies","https://gimmecookies.github.io","Idle games and light puzzles"],
+[D,"Totally Science","https://totallyscience.gitlab.io","Science-themed disguise, game catalogs"],
+[D,"TopVaz","https://topvaz.github.io","Driving, drifting, action"],
+[D,"Red Ball Hub","https://redball.github.io","Physics platforming series"],
+[D,"Drive Mad Hub","https://drivemad.github.io","WebGL physics driving levels"],
+[D,"1v1.LOL","https://1v1lol.github.io","Third-person building and shooting"],
+[D,"Drift Hunters","https://drifthunters.github.io","3D drifting simulator"],
+[E,"Coolmath Games","https://coolmathgames.com","Strategy, logic, math puzzles"],
+[E,"Nitro Type","https://nitrotype.com","Typing-speed racing"],
+[E,"TypeRacer","https://play.typeracer.com","Competitive typing races"],
+[E,"Chess.com","https://chess.com/play","Play chess online"],
+[E,"Lichess","https://lichess.org","Open-source chess, no ads"],
+[E,"Neal.fun","https://neal.fun","Infinite Craft, The Password Game"],
+[E,"NYT Games","https://nytimes.com/games","Wordle, Connections, Mini"],
+[E,"GeoGuessr Free","https://geoguessr.com/free","Street View geography guessing"],
+[E,"Sporcle","https://sporcle.com","Trivia and speed quizzes"],
+[E,"Scratch Games","https://scratch.mit.edu/explore/projects/games/","Student-coded games on MIT Scratch"]
+];
+const cats=["All",G,D,E];let cur="All";
+const tabs=document.getElementById("tabs"),out=document.getElementById("out"),q=document.getElementById("q"),none=document.getElementById("none");
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+cats.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.setAttribute("aria-pressed",c==="All");b.onclick=()=>{cur=c;[...tabs.children].forEach(x=>x.setAttribute("aria-pressed",x===b));render()};tabs.appendChild(b)});
+function render(){
+const t=q.value.trim().toLowerCase();let n=0,h="";
+cats.slice(1).forEach(c=>{
+if(cur!=="All"&&cur!==c)return;
+const items=L.filter(x=>x[0]===c&&(!t||(x[1]+" "+x[3]+" "+x[2]).toLowerCase().includes(t)));
+if(!items.length)return;n+=items.length;
+h+=`<h2>${c} (${items.length})</h2><div class="grid">`+items.map(x=>`<a class="c" href="${x[2]}" target="_blank" rel="noopener noreferrer"><b>${esc(x[1])}</b><span>${esc(x[3])}</span></a>`).join("")+"</div>"});
+out.innerHTML=h;none.style.display=n?"none":"block"}
+q.addEventListener("input",render);render();
+</script></body></html>
